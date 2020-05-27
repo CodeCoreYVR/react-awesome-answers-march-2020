@@ -9,8 +9,18 @@ class QuestionShowPage extends Component {
     super(props); // calling the constructor() method of the React.Component class.
     // call super(props) in every class component you write.
     this.state = {
-      question: oneQuestionData
+      question: oneQuestionData,
+      shouldHide: false
     }
+  }
+
+  hideAnswers() {
+    this.setState((state) => {
+      const shouldHide = state.shouldHide ? false : true;
+      return {
+        shouldHide: shouldHide
+      }
+    })
   }
 
   render () {
@@ -23,7 +33,8 @@ class QuestionShowPage extends Component {
           view_count={this.state.question.view_count}
           created_at={new Date(this.state.question.created_at)}
         />
-        <AnswersList answers={this.state.question.answers}/>
+        { this.state.shouldHide ? null : <AnswersList answers={this.state.question.answers}/> }
+        <button onClick={() => { this.hideAnswers() }}>Toggle Answers</button>
       </div>
     )
   }

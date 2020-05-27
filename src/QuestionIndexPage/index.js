@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import questionData from '../questionData';
 import QuestionDetails from '../QuestionDetails';
+import NewQuestionForm from '../NewQuestionForm';
 
 class QuestionIndexPage extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class QuestionIndexPage extends Component {
       question: questionData,
       helloWorld: 'helloWorld'
     }
+    this.createQuestion = this.createQuestion.bind(this);
   }
   
   // all functions in ReactJS should be pure functions
@@ -24,6 +26,25 @@ class QuestionIndexPage extends Component {
       questionsClone.pop()
       return {
         question: questionsClone
+      }
+    })
+  }
+
+  createQuestion(params) {
+    // params looks like { title: 'something', body: 'something }
+    this.setState((state) => {
+      return {
+        question: [
+          {
+            ...params, // copies title: 'something', body: 'somehting
+            // title: params.title,
+            // body: params.body
+            id: 50000,
+            created_at: new Date(),
+            view_count: 0
+          },
+          ...state.question
+        ]
       }
     })
   }
@@ -46,6 +67,7 @@ class QuestionIndexPage extends Component {
     return (
       <main>
         <h1>Question Index page</h1>
+        <NewQuestionForm createQuestion={this.createQuestion}/>
         <ul>
           { questions }
         </ul>

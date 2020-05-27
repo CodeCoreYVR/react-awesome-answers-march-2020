@@ -12,6 +12,7 @@ class QuestionShowPage extends Component {
       question: oneQuestionData,
       shouldHide: false
     }
+    this.deleteAnswers = this.deleteAnswers.bind(this)
   }
 
   hideAnswers() {
@@ -19,6 +20,23 @@ class QuestionShowPage extends Component {
       const shouldHide = state.shouldHide ? false : true;
       return {
         shouldHide: shouldHide
+      }
+    })
+  }
+
+  deleteAnswers(id) {
+    this.setState((state) => {
+      const newAnswers = [...state.question.answers].filter((answer) => {
+        console.log(answer)
+        console.log(id)
+        return answer.id !== id 
+      })
+      const questionClone = {...state.question} // {...state.question} creates a new copy of state.question
+      // Note: with spread operator (...state.question) ONLY COPIES 1 level deep
+      questionClone.answers = newAnswers
+      console.log(questionClone)
+      return {
+        question: questionClone
       }
     })
   }
@@ -33,7 +51,7 @@ class QuestionShowPage extends Component {
           view_count={this.state.question.view_count}
           created_at={new Date(this.state.question.created_at)}
         />
-        { this.state.shouldHide ? null : <AnswersList answers={this.state.question.answers}/> }
+        { this.state.shouldHide ? null : <AnswersList answers={this.state.question.answers} handleDeleteAnswer={ this.deleteAnswers }/> }
         <button onClick={() => { this.hideAnswers() }}>Toggle Answers</button>
       </div>
     )

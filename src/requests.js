@@ -1,5 +1,5 @@
 const BASE_URL = `http://localhost:3000/api/v1`
-const Question = {
+export const Question = {
     index() {
         return fetch(`${BASE_URL}/questions`, {
             credentials: 'include'
@@ -25,7 +25,7 @@ const Question = {
     }
 }
 
-const Session = {
+export const Session = {
     create(params) {
         // params should be an object with { email: 'some@gmail.com', password: 'supersecret' }
         return fetch(`${BASE_URL}/session`, {

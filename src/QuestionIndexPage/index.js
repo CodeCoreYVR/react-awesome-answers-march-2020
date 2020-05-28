@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import QuestionDetails from '../QuestionDetails';
 import NewQuestionForm from '../NewQuestionForm';
 import { Question } from '../requests';
+import { Link } from 'react-router-dom';
 
 class QuestionIndexPage extends Component {
   constructor(props) {
@@ -66,13 +67,14 @@ class QuestionIndexPage extends Component {
     console.log(this)
     const questions = this.state.questions.map( question => {
       return(
-        <QuestionDetails
-          key={question.id}
-          title={question.title}
-          body={question.body}
-          view_count={question.view_count}
-          created_at={question.created_at}
-        />
+        <Link key={question.id} to={`/questions/${question.id}`}>
+          <QuestionDetails
+            title={question.title}
+            body={question.body}
+            view_count={question.view_count}
+            created_at={question.created_at}
+          />
+        </Link>
       )
     })
 

@@ -4,6 +4,7 @@ import QuestionShowPage from '../QuestionShowPage';
 import CurrentDateTime from '../CurrentDateTime';
 import { Session } from '../requests';
 import { BrowserRouter, Route } from 'react-router-dom';
+import Navbar from '../Navbar';
 
 class App extends Component {
 
@@ -20,6 +21,7 @@ class App extends Component {
     return(
       <BrowserRouter>
         <main>
+          <Navbar />
           {/* 
             The Route component has many props to determine which component gets rendered. and when to render a component
             - path: when the path prop mathces the path in the url, the provided component is rendered

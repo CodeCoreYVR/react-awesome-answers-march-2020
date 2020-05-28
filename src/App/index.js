@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import QuestionIndexPage from '../QuestionIndexPage';
 import QuestionShowPage from '../QuestionShowPage';
+import NewQuestionPage from '../NewQuestionPage';
 import CurrentDateTime from '../CurrentDateTime';
 import { Session } from '../requests';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from '../Navbar';
 
 class App extends Component {
@@ -28,8 +29,14 @@ class App extends Component {
             - component: this is the component you want to render
             - exact: prop to tell react-router-dom to only render this Route if the path is exactly "/questions" 
           */}
-          <Route path="/questions" exact component={QuestionIndexPage} />
-          <Route path="/questions/:id" component={QuestionShowPage} />
+          {/* 
+            switch is a component provided by React-Router-Dom that will only render the first <Route/> component that matches
+           */}
+          <Switch>
+            <Route path="/questions" exact component={QuestionIndexPage} />
+            <Route path="/questions/new" component={NewQuestionPage} />
+            <Route path="/questions/:id" component={QuestionShowPage} />
+          </Switch>
         </main>
       </BrowserRouter>
     )

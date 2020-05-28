@@ -51,7 +51,7 @@ class QuestionIndexPage extends Component {
 
   // the render method relies on this.state to create views
   render() {
-    console.log(this.state)
+    console.log(this)
     const questions = this.state.question.map( question => {
       return(
         <QuestionDetails

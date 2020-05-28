@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
-import questionData from '../questionData';
 import QuestionDetails from '../QuestionDetails';
 import NewQuestionForm from '../NewQuestionForm';
+import { Question } from '../requests';
 
 class QuestionIndexPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      question: questionData,
+      questions: [],
       helloWorld: 'helloWorld'
     }
     this.createQuestion = this.createQuestion.bind(this);
+  }
+
+  componentDidMount() {
+    Question.index().then(questions => {
+      this.setState((state) => {
+        return {
+          questions
+          // questions: questions
+        }
+      })
+      console.log(questions);
+    })
   }
   
   // all functions in ReactJS should be pure functions
@@ -52,7 +64,7 @@ class QuestionIndexPage extends Component {
   // the render method relies on this.state to create views
   render() {
     console.log(this)
-    const questions = this.state.question.map( question => {
+    const questions = this.state.questions.map( question => {
       return(
         <QuestionDetails
           key={question.id}

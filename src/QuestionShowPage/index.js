@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import QuestionDetails from '../QuestionDetails';
 import AnswersList from '../AnswersList';
-import oneQuestionData from '../oneQuestionData';
+import { Question } from '../requests';
 
 // If your component needs state or events... use a class based component
 class QuestionShowPage extends Component {
@@ -9,10 +9,21 @@ class QuestionShowPage extends Component {
     super(props); // calling the constructor() method of the React.Component class.
     // call super(props) in every class component you write.
     this.state = {
-      question: oneQuestionData,
+      question: {},
       shouldHide: false
     }
     this.deleteAnswers = this.deleteAnswers.bind(this)
+  }
+
+  componentDidMount() {
+    Question.get(80).then(question => {
+      this.setState((state) => {
+        return {
+          question
+          // question: question
+        }
+      })
+    })
   }
 
   hideAnswers() {

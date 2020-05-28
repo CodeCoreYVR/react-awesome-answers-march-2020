@@ -26,6 +26,10 @@ class CurrentDateTime extends Component {
     }, 1000)
   }
 
+  componentDidUpdate() {
+    console.log('4: componentDidUpdate')
+  }
+
   componentWillUnmount() {
     console.log('5: componentWillUnmount')
     // on componentWillMount() we set a timer wiht `setInterval` this gets added to the Window Object and it stays until we call clearInterval.

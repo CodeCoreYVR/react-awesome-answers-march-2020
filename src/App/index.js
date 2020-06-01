@@ -57,7 +57,7 @@ class App extends Component {
           <Switch>
             <Route path="/questions" exact component={QuestionIndexPage} />
             {/* <Route path="/questions/new" component={NewQuestionPage} /> */}
-            <AuthRoute isAuthenticated={this.state.currentUser} path="/questions/new" component={NewQuestionPage} helloWorld="hello world" style={{color: 'red', backgroundColor: 'red'}}/>
+            <AuthRoute isAuthenticated={this.state.currentUser} component={NewQuestionPage} path="/questions/new" helloWorld="hello world" style={{color: 'red', backgroundColor: 'red'}}/>
             <Route path="/questions/:id" component={QuestionShowPage} />
             <Route path="/sign_in" component={SignInPage} />
           </Switch>

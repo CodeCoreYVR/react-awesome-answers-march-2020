@@ -3,6 +3,7 @@ import QuestionIndexPage from '../QuestionIndexPage';
 import QuestionShowPage from '../QuestionShowPage';
 import NewQuestionPage from '../NewQuestionPage';
 import CurrentDateTime from '../CurrentDateTime';
+import SignInPage from '../SignInPage';
 import { Session } from '../requests';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from '../Navbar';
@@ -36,6 +37,7 @@ class App extends Component {
             <Route path="/questions" exact component={QuestionIndexPage} />
             <Route path="/questions/new" component={NewQuestionPage} />
             <Route path="/questions/:id" component={QuestionShowPage} />
+            <Route path="/sign_in" component={SignInPage} />
           </Switch>
         </main>
       </BrowserRouter>

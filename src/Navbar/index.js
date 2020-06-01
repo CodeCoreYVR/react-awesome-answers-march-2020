@@ -7,6 +7,7 @@ function Navbar(props) {
     <nav>
       <NavLink to='/questions'>Questions Index</NavLink>
       <NavLink to='/questions/new'>New Question?</NavLink>
+      <NavLink to='/sign_in'>Sign In</NavLink>
       <CurrentDateTime/>
     </nav>
   )

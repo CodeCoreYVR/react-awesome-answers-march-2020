@@ -6,6 +6,7 @@ import CurrentDateTime from '../CurrentDateTime';
 import SignInPage from '../SignInPage';
 import { User } from '../requests';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import AuthRoute from  '../AuthRoute';
 import Navbar from '../Navbar';
 
 class App extends Component {
@@ -55,7 +56,8 @@ class App extends Component {
            */}
           <Switch>
             <Route path="/questions" exact component={QuestionIndexPage} />
-            <Route path="/questions/new" component={NewQuestionPage} />
+            {/* <Route path="/questions/new" component={NewQuestionPage} /> */}
+            <AuthRoute isAuthenticated={this.state.currentUser} path="/questions/new" component={NewQuestionPage} helloWorld="hello world" style={{color: 'red', backgroundColor: 'red'}}/>
             <Route path="/questions/:id" component={QuestionShowPage} />
             <Route path="/sign_in" component={SignInPage} />
           </Switch>

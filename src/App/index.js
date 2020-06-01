@@ -4,6 +4,7 @@ import QuestionShowPage from '../QuestionShowPage';
 import NewQuestionPage from '../NewQuestionPage';
 import CurrentDateTime from '../CurrentDateTime';
 import SignInPage from '../SignInPage';
+import NewUserPage from '../NewUserPage';
 import { User } from '../requests';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import AuthRoute from  '../AuthRoute';
@@ -60,6 +61,7 @@ class App extends Component {
             <AuthRoute isAuthenticated={this.state.currentUser} component={NewQuestionPage} path="/questions/new" helloWorld="hello world" style={{color: 'red', backgroundColor: 'red'}}/>
             <Route path="/questions/:id" component={QuestionShowPage} />
             <Route path="/sign_in" component={SignInPage} />
+            <Route path="/users/new" component={NewUserPage} />
           </Switch>
         </main>
       </BrowserRouter>

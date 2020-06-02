@@ -49,7 +49,20 @@ class QuestionIndexPage extends Component {
     const { questions } = this.state;
     return (
       <main className="Page">
-        <h1 className="ui horizontal divider header">Question Index page</h1>
+        <h1
+          className="ui horizontal divider header"
+          // To add inline-styles, we can simply
+          // pass down an object of all our style
+          // properties inside {}
+          // and make sure that the properties that
+          // two or more words are camelCase
+          style={{
+            color: "maroon",
+            backgroundColor: "lightgrey",
+          }}
+        >
+          Question Index page
+        </h1>
         <ul className="ui list">
           {questions.map((question) => (
             <div key={question.id} className="ui clearing segment">

@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import QuestionIndexPage from "../QuestionIndexPage";
 import QuestionShowPage from "../QuestionShowPage";
 import NewQuestionPage from "../NewQuestionPage";
-import CurrentDateTime from "../CurrentDateTime";
 import SignInPage from "../SignInPage";
 import NewUserPage from "../NewUserPage";
 import { User } from "../requests";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AuthRoute from "../AuthRoute";
 import Navbar from "../Navbar";
+import { WelcomePage } from "../WelcomePage";
 
 class App extends Component {
   constructor(props) {
@@ -57,6 +57,7 @@ class App extends Component {
             switch is a component provided by React-Router-Dom that will only render the first <Route/> component that matches
            */}
             <Switch>
+              <Route path="/" exact component={WelcomePage} />
               <Route path="/questions" exact component={QuestionIndexPage} />
               {/* <Route path="/questions/new" component={NewQuestionPage} /> */}
               <AuthRoute

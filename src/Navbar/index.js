@@ -7,6 +7,9 @@ function Navbar(props) {
   const { currentUser } = props; // object destructuring
   return (
     <nav className="ui secondary pointing menu">
+      <NavLink className="item" to="/">
+        Home
+      </NavLink>
       <NavLink className="item" to="/questions">
         Questions Index
       </NavLink>

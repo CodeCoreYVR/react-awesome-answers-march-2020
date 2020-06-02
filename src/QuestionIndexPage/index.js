@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import QuestionDetails from "../QuestionDetails";
 import { Question } from "../requests";
 import { Link } from "react-router-dom";
 
@@ -25,23 +24,6 @@ class QuestionIndexPage extends Component {
     });
   }
 
-  // all functions in ReactJS should be pure functions
-  // pure functions are functions that do not change anything outside of itself
-  deleteQuestion() {
-    console.log("question delete fired");
-    // everytime you call this.setState React knows to re-render this component
-    this.setState((state) => {
-      // const newState = state.questions.pop()
-      const questionsClone = [...state.question];
-      // console.log(state);
-      // const newQuestions = [...state.question] // we use the ... (spread operator) to copy the array of state.question
-      questionsClone.pop();
-      return {
-        question: questionsClone,
-      };
-    });
-  }
-
   createQuestion(params) {
     // params looks like { title: 'something', body: 'something }
     this.setState((state) => {
@@ -64,30 +46,19 @@ class QuestionIndexPage extends Component {
   // the render method relies on this.state to create views
   render() {
     console.log(this);
-    const questions = this.state.questions.map((question) => {
-      return (
-        <Link key={question.id} to={`/questions/${question.id}`}>
-          <QuestionDetails
-            title={question.title}
-            body={question.body}
-            view_count={question.view_count}
-            created_at={question.created_at}
-          />
-        </Link>
-      );
-    });
-
+    const { questions } = this.state;
     return (
-      <main>
-        <h1>Question Index page</h1>
-        <ul>{questions}</ul>
-        <button
-          onClick={() => {
-            this.deleteQuestion();
-          }}
-        >
-          Delete
-        </button>
+      <main className="Page">
+        <h1 className="ui horizontal divider">Question Index page</h1>
+        <ul className="ui list">
+          {questions.map((question) => (
+            <div key={question.id} className="ui clearing segment">
+              <h3 className="ui header">
+                <Link to={`/questions/${question.id}`}>{question.title}</Link>
+              </h3>
+            </div>
+          ))}
+        </ul>
       </main>
     );
   }

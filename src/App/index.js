@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import QuestionIndexPage from '../QuestionIndexPage';
-import QuestionShowPage from '../QuestionShowPage';
-import NewQuestionPage from '../NewQuestionPage';
-import CurrentDateTime from '../CurrentDateTime';
-import SignInPage from '../SignInPage';
-import NewUserPage from '../NewUserPage';
-import { User } from '../requests';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import AuthRoute from  '../AuthRoute';
-import Navbar from '../Navbar';
+import React, { Component } from "react";
+import QuestionIndexPage from "../QuestionIndexPage";
+import QuestionShowPage from "../QuestionShowPage";
+import NewQuestionPage from "../NewQuestionPage";
+import CurrentDateTime from "../CurrentDateTime";
+import SignInPage from "../SignInPage";
+import NewUserPage from "../NewUserPage";
+import { User } from "../requests";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import AuthRoute from "../AuthRoute";
+import Navbar from "../Navbar";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: null
-    }
+      currentUser: null,
+    };
   }
 
   componentDidMount() {
@@ -31,42 +31,50 @@ class App extends Component {
   getUser() {
     // 1) fire off an api request to get information about the current logged in user.
     // 2) when it gets a response update the state with the user information
-    User.current().then(data => {
-      console.log(data)
+    User.current().then((data) => {
+      console.log(data);
       this.setState((state) => {
         return {
-          currentUser: data
-        }
-      })
+          currentUser: data,
+        };
+      });
     });
   }
 
   render() {
-    return(
+    return (
       <BrowserRouter>
-        <main>
-          <Navbar currentUser={this.state.currentUser} hello="World"/>
-          {/* 
+        <main className="App">
+          <Navbar currentUser={this.state.currentUser} hello="World" />
+          <div className="ui container">
+            {/* 
             The Route component has many props to determine which component gets rendered. and when to render a component
             - path: when the path prop mathces the path in the url, the provided component is rendered
             - component: this is the component you want to render
             - exact: prop to tell react-router-dom to only render this Route if the path is exactly "/questions" 
           */}
-          {/* 
+            {/* 
             switch is a component provided by React-Router-Dom that will only render the first <Route/> component that matches
            */}
-          <Switch>
-            <Route path="/questions" exact component={QuestionIndexPage} />
-            {/* <Route path="/questions/new" component={NewQuestionPage} /> */}
-            <AuthRoute isAuthenticated={this.state.currentUser} component={NewQuestionPage} path="/questions/new" helloWorld="hello world" style={{color: 'red', backgroundColor: 'red'}}/>
-            <Route path="/questions/:id" component={QuestionShowPage} />
-            <Route path="/sign_in" component={SignInPage} />
-            <Route path="/users/new" component={NewUserPage} />
-          </Switch>
+            <Switch>
+              <Route path="/questions" exact component={QuestionIndexPage} />
+              {/* <Route path="/questions/new" component={NewQuestionPage} /> */}
+              <AuthRoute
+                isAuthenticated={this.state.currentUser}
+                component={NewQuestionPage}
+                path="/questions/new"
+                helloWorld="hello world"
+                style={{ color: "red", backgroundColor: "red" }}
+              />
+              <Route path="/questions/:id" component={QuestionShowPage} />
+              <Route path="/sign_in" component={SignInPage} />
+              <Route path="/users/new" component={NewUserPage} />
+            </Switch>
+          </div>
         </main>
       </BrowserRouter>
-    )
+    );
   }
 }
 
-export default App
+export default App;

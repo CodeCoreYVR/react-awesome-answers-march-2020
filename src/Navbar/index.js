@@ -4,7 +4,7 @@ import CurrentDateTime from "../CurrentDateTime";
 
 function Navbar(props) {
   // props looks like { currentUser: { first_name: 'jon' }}
-  const { currentUser } = props; // object destructuring
+  const { currentUser, signOut } = props; // object destructuring
   return (
     <nav className="ui secondary pointing menu">
       <NavLink className="item" to="/">
@@ -37,7 +37,12 @@ function Navbar(props) {
           </NavLink>
         )}
         {currentUser && (
-          <span className="item">Hello {currentUser.first_name}</span>
+          <>
+            <span className="item">Hello {currentUser.first_name}</span>
+            <NavLink className="ui small red button" to="/" onClick={signOut}>
+              Sign Out
+            </NavLink>
+          </>
         )}
         <CurrentDateTime />
       </div>

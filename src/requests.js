@@ -60,6 +60,11 @@ export const Session = {
   },
   // to use create
   // Session.create({email: '', password: ''}).then(data => { console.log(data)})
+  destroy() {
+    return fetch(`${BASE_URL}/session`, {
+      method: "DELETE",
+    }).then((res) => res.json());
+  },
 };
 
 export const User = {

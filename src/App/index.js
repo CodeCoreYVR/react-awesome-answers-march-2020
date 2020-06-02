@@ -4,7 +4,7 @@ import QuestionShowPage from "../QuestionShowPage";
 import NewQuestionPage from "../NewQuestionPage";
 import SignInPage from "../SignInPage";
 import NewUserPage from "../NewUserPage";
-import { User } from "../requests";
+import { User, Session } from "../requests";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AuthRoute from "../AuthRoute";
 import Navbar from "../Navbar";
@@ -16,6 +16,12 @@ class App extends Component {
     this.state = {
       currentUser: null,
     };
+
+    // this.destroySession = this.destroySession.bind(this);
+    // Note to bind 'this' from the class 'App' component to
+    // destroySession method, we should either use the above
+    // line with regular methods or remove the above line
+    // and declare destroySession method as an arrow function
   }
 
   componentDidMount() {
@@ -27,6 +33,12 @@ class App extends Component {
     // })
     this.getUser();
   }
+
+  destroySession = () => {
+    Session.destroy().then(() => {
+      this.setState({ currentUser: null });
+    });
+  };
 
   getUser() {
     // 1) fire off an api request to get information about the current logged in user.
@@ -45,7 +57,11 @@ class App extends Component {
     return (
       <BrowserRouter>
         <main className="App">
-          <Navbar currentUser={this.state.currentUser} hello="World" />
+          <Navbar
+            currentUser={this.state.currentUser}
+            signOut={this.destroySession}
+            hello="World"
+          />
           <div className="ui container">
             {/* 
             The Route component has many props to determine which component gets rendered. and when to render a component

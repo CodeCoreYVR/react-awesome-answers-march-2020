@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import QuestionDetails from "../QuestionDetails";
 import AnswersList from "../AnswersList";
 import { Question } from "../requests";
+import { Spinner } from "../Spinner";
 
 // If your component needs state or events... use a class based component
 class QuestionShowPage extends Component {
@@ -12,6 +13,7 @@ class QuestionShowPage extends Component {
     this.state = {
       question: {},
       shouldHide: false,
+      isLoading: true,
     };
     this.deleteAnswers = this.deleteAnswers.bind(this);
   }
@@ -28,6 +30,7 @@ class QuestionShowPage extends Component {
         return {
           question,
           // question: question
+          isLoading: false,
         };
       });
     });
@@ -68,8 +71,8 @@ class QuestionShowPage extends Component {
   }
 
   render() {
-    if (!this.state.question) {
-      return <div>Question Doesn't Exist</div>;
+    if (this.state.isLoading) {
+      return <Spinner message="Question Doesn't Exist" />;
     }
     return (
       <>

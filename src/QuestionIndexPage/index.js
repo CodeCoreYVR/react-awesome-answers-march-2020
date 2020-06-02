@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Question } from "../requests";
 import { Link } from "react-router-dom";
+import { Spinner } from "../Spinner";
 
 class QuestionIndexPage extends Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class QuestionIndexPage extends Component {
     this.state = {
       questions: [],
       helloWorld: "helloWorld",
+      isLoading: true,
     };
     this.createQuestion = this.createQuestion.bind(this);
   }
@@ -18,6 +20,7 @@ class QuestionIndexPage extends Component {
         return {
           questions,
           // questions: questions
+          isLoading: false,
         };
       });
       console.log(questions);
@@ -47,6 +50,9 @@ class QuestionIndexPage extends Component {
   render() {
     console.log(this);
     const { questions } = this.state;
+    if (this.state.isLoading) {
+      return <Spinner message="Loading The List of Questions" />;
+    }
     return (
       <main className="Page">
         <h1

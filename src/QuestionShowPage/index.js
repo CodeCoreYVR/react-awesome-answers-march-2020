@@ -72,35 +72,43 @@ class QuestionShowPage extends Component {
       return <div>Question Doesn't Exist</div>;
     }
     return (
-      <div id="questionShowPage">
-        <QuestionDetails
-          title={this.state.question.title}
-          body={this.state.question.body}
-          author={this.state.question.author}
-          view_count={this.state.question.view_count}
-          created_at={new Date(this.state.question.created_at)}
-        />
-        <button
-          onClick={() => {
-            this.deleteQuestion(this.state.question.id);
-          }}
-        >
-          Delete
-        </button>
-        {this.state.shouldHide ? null : (
-          <AnswersList
-            answers={this.state.question.answers}
-            handleDeleteAnswer={this.deleteAnswers}
+      <>
+        <div className="ui teal clearing segment">
+          <QuestionDetails
+            title={this.state.question.title}
+            body={this.state.question.body}
+            author={this.state.question.author}
+            view_count={this.state.question.view_count}
+            created_at={new Date(this.state.question.created_at)}
           />
-        )}
-        <button
-          onClick={() => {
-            this.hideAnswers();
-          }}
-        >
-          Toggle Answers
-        </button>
-      </div>
+          <button
+            className="ui right floated red button"
+            onClick={() => {
+              this.deleteQuestion(this.state.question.id);
+            }}
+          >
+            Delete
+          </button>
+          <button
+            className="ui right floated teal small button"
+            onClick={() => {
+              this.hideAnswers();
+            }}
+          >
+            Toggle Answers
+          </button>
+        </div>
+
+        <h2 className="ui horizontal divider header">Answers</h2>
+        <div className="ui clearing segment">
+          {this.state.shouldHide ? null : (
+            <AnswersList
+              answers={this.state.question.answers}
+              handleDeleteAnswer={this.deleteAnswers}
+            />
+          )}
+        </div>
+      </>
     );
   }
 }

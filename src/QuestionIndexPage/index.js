@@ -49,7 +49,7 @@ class QuestionIndexPage extends Component {
     const { questions } = this.state;
     return (
       <main className="Page">
-        <h1 className="ui horizontal divider">Question Index page</h1>
+        <h1 className="ui horizontal divider header">Question Index page</h1>
         <ul className="ui list">
           {questions.map((question) => (
             <div key={question.id} className="ui clearing segment">

@@ -35,9 +35,11 @@ class NewQuestionPage extends Component {
   }
 
   render() {
+    const errors = this.state.newQuestionData.title.length < 10 ? <div>Title must be more than 10</div> : null;
     return (
       <main>
         <h1 className="ui horizontal divider header">New Question page</h1>
+        {errors}
         <NewQuestionForm createQuestion={this.createQuestion} newQuestionData={this.state.newQuestionData} updateQuestionData={this.updateQuestionData}/>
       </main>
     );

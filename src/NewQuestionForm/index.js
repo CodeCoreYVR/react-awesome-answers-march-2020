@@ -51,6 +51,7 @@ function NewQuestionForm(props) {
         className="ui right floated large orange button"
         type="submit"
         value="submit"
+        disabled={props.newQuestionData.title.length > 10 ? false : true}
       />
     </form>
   );
